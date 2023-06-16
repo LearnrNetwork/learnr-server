@@ -1,8 +1,15 @@
 import mongoose from 'mongoose';
 
+// pronoun enum
+enum Pronoun {
+	heHim = 'he/him',
+	sheHer = 'she/her',
+	theyThem = 'they/them',
+}
+
 // Profile interface
 export interface IProfile extends mongoose.Document {
-	gender?: string;
+	pronoun?: Pronoun;
 	education?: {
 		from: Date;
 		to: Date;
@@ -21,8 +28,12 @@ export interface IProfile extends mongoose.Document {
 
 const profileSchema = new mongoose.Schema<IProfile>(
 	{
-		gender: {
+		pronoun: {
 			type: String,
+			enum: {
+				values: Object.values(Pronoun),
+				message: 'Pronoun is either: he/him, she/her, they/them',
+			},
 		},
 		birthday: {
 			type: Date,
