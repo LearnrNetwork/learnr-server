@@ -88,7 +88,21 @@ export const signin = catchAsync(
 	}
 );
 
-export const isLoggedin = catchAsync(
+// get the current user
+export const currentUser = catchAsync(
+	async (req: Request, res: Response, next: NextFunction) => {
+		// get the user
+		const user = req.user;
+		res.status(200).json({
+			status: 'success',
+			message: 'User fetched successfully.',
+			user,
+		});
+	}
+);
+
+// checks if the user is logged in
+export const isLoggedIn = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		// get the token
 		const token = req.headers.authorization?.split(' ')[1];
@@ -129,5 +143,15 @@ export const isAuthorized = catchAsync(
 		}
 
 		next();
+	}
+);
+
+// logout the user
+export const logout = catchAsync(
+	async (req: Request, res: Response, next: NextFunction) => {
+		res.status(200).json({
+			status: 'success',
+			message: 'User logged out successfully.',
+		});
 	}
 );

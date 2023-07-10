@@ -4,12 +4,12 @@ import {
 	updateProfile,
 	getProfile,
 } from '../controllers/profile.js';
-import { isAuthorized, isLoggedin } from '../controllers/auth.js';
+import { isAuthorized, isLoggedIn } from '../controllers/auth.js';
 
 const router = Router();
 
-router.post('/:user', isLoggedin, createProfile);
+router.post('/:user', isLoggedIn, createProfile);
 router.get('/:user', getProfile);
-router.put('/:user', isLoggedin, isAuthorized, updateProfile);
+router.put('/:user', isLoggedIn, isAuthorized, updateProfile);
 
 export default router;

@@ -1,10 +1,13 @@
 import Express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import cors from 'cors';
 
 // import routes
 import authRoutes from './routes/auth.js';
 import profileRoutes from './routes/profile.js';
+import bookRoutes from './routes/book.js';
+import tagRoutes from './routes/tag.js';
 
 // import db connection
 import connectDB from './utils/connectDB.js';
@@ -23,10 +26,17 @@ connectDB();
 // middlewares
 app.use(Express.json());
 app.use(morgan('dev'));
+app.use(
+	cors({
+		origin: process.env.CLIENT_URL,
+	})
+);
 
 // app routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/profile', profileRoutes);
+app.use('/api/v1/books', bookRoutes);
+app.use('/api/v1/tags', tagRoutes);
 
 // 404 route
 app.use('*', notFound);
