@@ -1,4 +1,4 @@
-import User from '../models/User.js';
+import User from '../models/entities/User.js';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import catchAsync from '../utils/catchAsync.js';

@@ -1,6 +1,6 @@
 import slugify from 'slugify';
 import { Request, Response, NextFunction } from 'express';
-import Tag from '../models/Tag.js';
+import Tag from '../models/entities/Tag.js';
 import catchAsync from '../utils/catchAsync.js';
 
 // create tags

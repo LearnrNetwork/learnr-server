@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import Book from '../models/Book.js';
+import Book from '../models/entities/Book.js';
 import catchAsync from '../utils/catchAsync.js';
 import AppError from '../utils/AppError.js';
 import slugify from 'slugify';

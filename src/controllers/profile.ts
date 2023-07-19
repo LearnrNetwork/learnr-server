@@ -1,6 +1,6 @@
 import { NextFunction, Response, Request } from 'express';
 import catchAsync from '../utils/catchAsync.js';
-import Profile from '../models/Profile.js';
+import Profile from '../models/entities/Profile.js';
 import AppError from '../utils/AppError.js';
 
 // add user in the Request Object
