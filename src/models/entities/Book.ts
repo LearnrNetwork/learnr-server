@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-interface IBook extends mongoose.Document {
+export interface IBook extends mongoose.Document {
 	title: string;
 	author: string | mongoose.Types.ObjectId;
 	description: string;
@@ -12,6 +12,9 @@ interface IBook extends mongoose.Document {
 	ratingsCount: number;
 	bookCover: string;
 	amazonLink: string;
+	likes: number;
+	reads: number;
+	hiddenTag?: mongoose.Types.ObjectId[];
 }
 
 const BookSchema = new mongoose.Schema<IBook>(
@@ -65,8 +68,22 @@ const BookSchema = new mongoose.Schema<IBook>(
 			type: String,
 			required: true,
 		},
+		likes: {
+			type: Number,
+			default: 0,
+			min: 0,
+		},
+		reads: {
+			type: Number,
+			default: 0,
+			min: 0,
+		},
 		amazonLink: {
 			type: String,
+		},
+		hiddenTag: {
+			type: [mongoose.Schema.Types.ObjectId],
+			ref: 'Tag',
 		},
 	},
 	{ timestamps: true }
