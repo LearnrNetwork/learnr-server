@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-interface ITag extends mongoose.Document {
+export interface ITag extends mongoose.Document {
 	name: string;
 	slug: string;
 	description: string;
