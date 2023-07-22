@@ -4,6 +4,7 @@ import {
 	getBookById,
 	createBook,
 	updateBook,
+	deleteBook,
 } from '../controllers/book.js';
 import { isLoggedIn } from '../controllers/auth.js';
 
@@ -13,5 +14,6 @@ router.get('/', getBooks);
 router.get('/:id', getBookById);
 router.post('/', isLoggedIn, createBook);
 router.put('/:id', isLoggedIn, updateBook);
+router.delete('/:id', isLoggedIn, deleteBook);
 
 export default router;
