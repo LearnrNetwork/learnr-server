@@ -4,10 +4,10 @@ export interface IArticle extends Document {
 	title: string;
 	slug: string;
 	content: string;
-	reads: number;
-	likes: number;
+	reads?: number;
+	likes?: number;
 	tags: mongoose.Types.ObjectId[];
-	parent: mongoose.Types.ObjectId;
+	parent?: mongoose.Types.ObjectId;
 }
 
 const ArticleSchema = new mongoose.Schema<IArticle>(
@@ -33,7 +33,6 @@ const ArticleSchema = new mongoose.Schema<IArticle>(
 		parent: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'onModel',
-			required: true,
 			onModel: {
 				type: String,
 				enum: ['Book', 'Series'],
