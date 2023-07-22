@@ -12,8 +12,8 @@ export interface IBook extends mongoose.Document {
 	ratingsCount: number;
 	bookCover: string;
 	amazonLink: string;
-	likes: number;
-	reads: number;
+	likes?: number;
+	reads?: number;
 	hiddenTag?: mongoose.Types.ObjectId[];
 }
 
