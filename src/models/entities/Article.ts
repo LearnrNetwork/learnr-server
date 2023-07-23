@@ -4,6 +4,8 @@ export interface IArticle extends Document {
 	title: string;
 	slug: string;
 	content: string;
+	author: mongoose.Types.ObjectId;
+	contributors?: mongoose.Types.ObjectId[];
 	reads?: number;
 	likes?: number;
 	tags: mongoose.Types.ObjectId[];
@@ -24,6 +26,17 @@ const ArticleSchema = new mongoose.Schema<IArticle>(
 		content: {
 			type: String,
 		},
+		author: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
+			required: true,
+		},
+		contributors: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'User',
+			},
+		],
 		tags: [
 			{
 				type: [mongoose.Schema.Types.ObjectId],
