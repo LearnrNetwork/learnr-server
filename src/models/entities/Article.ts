@@ -57,7 +57,7 @@ const ArticleSchema = new mongoose.Schema<IArticle>(
 			min: 0,
 		},
 		likes: {
-			types: Number,
+			type: Number,
 			default: 0,
 			min: 0,
 		},
