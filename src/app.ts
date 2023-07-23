@@ -8,6 +8,7 @@ import authRoutes from './routes/auth.js';
 import profileRoutes from './routes/profile.js';
 import bookRoutes from './routes/book.js';
 import tagRoutes from './routes/tag.js';
+import articleRoutes from './routes/article.js';
 
 // import db connection
 import connectDB from './utils/connectDB.js';
@@ -37,6 +38,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/profile', profileRoutes);
 app.use('/api/v1/books', bookRoutes);
 app.use('/api/v1/tags', tagRoutes);
+app.use('/api/v1/articles', articleRoutes);
 
 // 404 route
 app.use('*', notFound);
