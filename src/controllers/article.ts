@@ -32,7 +32,9 @@ export const createArticle = catchAsync(
 export const getArticleById = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const id = req.params.id;
-		const article = await Article.findById(id);
+		const article = await Article.findById(id)
+			.populate('author', '-password')
+			.populate('tags');
 		if (!article) {
 			return next(AppError.notFound('Not found'));
 		}
@@ -93,7 +95,9 @@ export const deleteArticle = catchAsync(
 // get all articles
 export const getAllArticles = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const articles = await Article.find();
+		const articles = await Article.find()
+			.populate('author', '-password')
+			.populate('tags');
 		if (articles.length == 0) {
 			return next(AppError.notFound('No articles found'));
 		}

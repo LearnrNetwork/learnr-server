@@ -51,6 +51,8 @@ export const getBooks = catchAsync(
 		}
 		// find all the books
 		const books = await Book.find(query)
+			.populate('tags', '_id name slug')
+			.populate('author', '_id firstname lastname username photo')
 			.limit(limit * 1)
 			.skip((page - 1) * limit);
 		const totalPages = Math.ceil(totalBooks / limit);
