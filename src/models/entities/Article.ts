@@ -39,7 +39,7 @@ const ArticleSchema = new mongoose.Schema<IArticle>(
 		],
 		tags: [
 			{
-				type: [mongoose.Schema.Types.ObjectId],
+				type: mongoose.Schema.Types.ObjectId,
 				ref: 'Tag',
 			},
 		],
