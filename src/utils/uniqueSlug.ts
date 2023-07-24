@@ -10,6 +10,14 @@ interface options {
 	trim?: boolean;
 }
 
-export default function uniqueSlug(title: string, options?: options) {
+export default function uniqueSlug(
+	title: string,
+	options: options = {
+		trim: true,
+		lower: true,
+		strict: true,
+		remove: /[*+~.()'"!:@]/g,
+	}
+) {
 	return slugify.default(title, options) + '-' + nanoid(6);
 }
