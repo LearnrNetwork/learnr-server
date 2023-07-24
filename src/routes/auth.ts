@@ -10,6 +10,6 @@ const router = Router();
 
 router.post('/signup', signup);
 router.post('/login', signin);
-router.get('/', isLoggedIn, currentUser);
+router.post('/current-user', isLoggedIn, currentUser);
 
 export default router;
