@@ -9,7 +9,7 @@ export const createArticle = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const { title, content, tags, parent } = req.body;
 		const author = req.user._id;
-		const slug = uniqueSlug(title, { lower: true, trim: true });
+		const slug = uniqueSlug(title);
 		const article = await Article.create({
 			title,
 			content,
@@ -86,6 +86,23 @@ export const deleteArticle = catchAsync(
 		return res.status(200).json({
 			status: 'success',
 			message: 'Article deleted successfully',
+		});
+	}
+);
+
+// get all articles
+export const getAllArticles = catchAsync(
+	async (req: Request, res: Response, next: NextFunction) => {
+		const articles = await Article.find();
+		if (articles.length == 0) {
+			return next(AppError.notFound('No articles found'));
+		}
+		return res.status(200).json({
+			status: 'success',
+			message: 'Articles retrieved successfully',
+			data: {
+				articles,
+			},
 		});
 	}
 );
